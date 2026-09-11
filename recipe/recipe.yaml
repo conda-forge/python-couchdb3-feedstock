@@ -1,6 +1,5 @@
 context:
-  version: "3.1.0"
-  python_min: "3.11"
+  version: "3.2.0"
 
 package:
   name: python-couchdb3
@@ -8,7 +7,12 @@ package:
 
 source:
   - url: https://pypi.org/packages/source/c/couchdb3/couchdb3-${{ version }}.tar.gz
-    sha256: 01c4949447968efaaa572f838e1cc8fe5acb92154e95b895a58f700be292d252
+    sha256: 9c42143a700b2f4334af0f1b9f24325afaef094edf4595b07ab8f99b7b815a14
+    patches:
+      # Upstream lists build and pdoc3 in [project].dependencies, but neither
+      # is imported by the package and both are already in the dev extra.
+      # Without this, pip_check demands them at runtime. Not yet filed upstream.
+      - patches/0001-Drop-build-and-pdoc3-from-runtime-dependencies.patch
 
 build:
   number: 0
@@ -22,14 +26,18 @@ requirements:
     - pip
   run:
     - python >=${{ python_min }}
-    - requests <3.0.0,>=2.32.4
+    - httpx >=0.27,<1.0
 
 tests:
   - python:
       imports:
         - couchdb3
+        - couchdb3.aio
+        - couchdb3.sync
       pip_check: true
-      python_version: ${{ python_min }}.*
+      python_version:
+        - ${{ python_min }}.*
+        - "*"
 
 about:
   summary: A wrapper around the CouchDB API

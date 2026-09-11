@@ -1,0 +1,31 @@
+From 4a7bd2e423b25e3e8b4d28276b3b270ccd3230ec Mon Sep 17 00:00:00 2001
+From: Chris Burr <chrisburr73@gmail.com>
+Date: Fri, 11 Sep 2026 18:43:21 +0200
+Subject: [PATCH] Drop build and pdoc3 from runtime dependencies
+
+build (a PEP 517 build frontend) and pdoc3 (a documentation
+generator) are development tools, not runtime requirements: neither
+is imported anywhere under src/couchdb3, and both are already listed
+in the 'dev' optional-dependency group.
+
+Declaring them in [project].dependencies forces every consumer of
+couchdb3 to install a build frontend and a doc generator, which also
+makes the package unnecessarily heavy to redistribute.
+---
+ pyproject.toml | 2 --
+ 1 file changed, 2 deletions(-)
+
+diff --git a/pyproject.toml b/pyproject.toml
+index 11a7259..ea4e2c6 100644
+--- a/pyproject.toml
++++ b/pyproject.toml
+@@ -15,9 +15,7 @@ classifiers = [
+     "Programming Language :: Python :: 3.14",
+ ]
+ dependencies = [
+-    "build>=1.5.0",
+     "httpx>=0.27,<1.0",
+-    "pdoc3>=0.11.6",
+ ]
+ 
+ [project.optional-dependencies]
