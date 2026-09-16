@@ -1,5 +1,5 @@
 context:
-  version: "3.2.0"
+  version: "3.4.3"
 
 package:
   name: python-couchdb3
@@ -7,7 +7,7 @@ package:
 
 source:
   - url: https://pypi.org/packages/source/c/couchdb3/couchdb3-${{ version }}.tar.gz
-    sha256: 9c42143a700b2f4334af0f1b9f24325afaef094edf4595b07ab8f99b7b815a14
+    sha256: 5879386d16eda34b138cf2357bca98c56cc225985d034109a328f0fb683f55e3
     patches:
       # Upstream lists build and pdoc3 in [project].dependencies, but neither
       # is imported by the package and both are already in the dev extra.
