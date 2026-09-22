@@ -8,11 +8,6 @@ package:
 source:
   - url: https://pypi.org/packages/source/c/couchdb3/couchdb3-${{ version }}.tar.gz
     sha256: 254b98a4fdad595db3c2077d6ee389c434d235c5d5b37945b903726ac9c93e48
-    patches:
-      # Upstream lists build and pdoc3 in [project].dependencies, but neither
-      # is imported by the package and both are already in the dev extra.
-      # Without this, pip_check demands them at runtime. Not yet filed upstream.
-      - patches/0001-Drop-build-and-pdoc3-from-runtime-dependencies.patch
 
 build:
   number: 0
