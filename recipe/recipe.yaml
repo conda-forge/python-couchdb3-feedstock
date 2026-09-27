@@ -1,5 +1,5 @@
 context:
-  version: "3.4.4"
+  version: "3.5.0"
 
 package:
   name: python-couchdb3
@@ -7,7 +7,7 @@ package:
 
 source:
   - url: https://pypi.org/packages/source/c/couchdb3/couchdb3-${{ version }}.tar.gz
-    sha256: 254b98a4fdad595db3c2077d6ee389c434d235c5d5b37945b903726ac9c93e48
+    sha256: 7d220367cd7b2da004fff164fe96dd33f736d54ac865a5dc838524177a35a235
 
 build:
   number: 0
